@@ -1,3 +1,8 @@
 class Post < ActiveRecord::Base
-  # Remember to create a migration!
+  validates :user_id, presence: true
+  validates :title, presence: true
+  validates :content, presence: true
+
+  has_many :comments
+  belongs_to :user
 end
