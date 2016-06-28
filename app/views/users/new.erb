@@ -1,0 +1,11 @@
+<div>
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+  <h1>Register below</h1>
+  <form>
+      <input type="text" name ="user[username]" placeholder="Username">
+      <input type="password" name="user[password]" placeholder="Password">
+      <input type="submit" value="Register" formaction="/users" formmethod="post">
+  </form>
+</div>
