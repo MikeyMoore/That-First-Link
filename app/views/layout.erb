@@ -17,7 +17,23 @@
 
 
   <title>That First Link</title>
+  
 </head>
+  <% if @error %>
+    <%= @error %>
+  <% end %>
+  <% if !current_user %>
+    <form>
+    <input type="text" name="user[username]" placeholder="Username">
+    <input type="password" name="user[password]" placeholder="Password">
+    <input type="submit" value="Log In" formaction="/login" formmethod="post">
+    </form>
+  <a href='/user/new'> Register </a>
+  <% else %>
+  <p>You are currently here as <%= current_user.username %></p>
+  <a href='/logout'> Logout </a>
+  <% end %>
+
 <body>
 
   <%= yield %>
