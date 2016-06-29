@@ -1,0 +1,19 @@
+<br>
+<h1><%= @post.title %></h1>
+<br>
+<p><%= @post.content %></p>
+<br>
+<h2>Responses</h2>
+<ul>
+<% @post.comments.each do |comment| %>
+<li><%= comment.content %></li>
+<% end %>
+</ul>
+<% if current_user %>
+<form role="form" action="/post/<%= @post.id %>" method="post">
+
+    <textarea rows="5" name="content" placeholder="Leave your response"></textarea>
+        <br>
+    <button type="submit">Respond</button>
+</form>
+	<% end %>

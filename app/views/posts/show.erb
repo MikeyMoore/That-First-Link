@@ -1,0 +1,16 @@
+<% if current_user %>
+<form role="form" action="/post" method="post">
+
+    <input type="text" name="title" placeholder="Your Title">
+    <br>
+  	<textarea rows="5" name="content" placeholder="Your Post"></textarea>
+  	<br>
+  
+  <button type="submit">Post</button>
+</form>
+<% end %>
+
+<% @posts.each do |post| %>
+<br>
+<a href='post/<%= post.id %>'><%= post.title %></a>
+<% end %>
