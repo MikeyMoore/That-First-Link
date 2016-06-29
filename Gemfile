@@ -7,8 +7,7 @@ gem 'sinatra-contrib'
 
 gem 'thin'
 
-
-gem 'font-awesome-less'
+gem 'dotenv'
 
 gem 'activesupport'
 gem 'activerecord'

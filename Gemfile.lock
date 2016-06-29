@@ -18,15 +18,11 @@ GEM
     backports (3.6.8)
     bcrypt (3.1.11)
     builder (3.2.2)
-    commonjs (0.2.7)
     daemons (1.2.3)
+    dotenv (2.1.1)
     eventmachine (1.2.0.1)
-    font-awesome-less (4.6.2)
-      less (>= 2.4.0)
     i18n (0.7.0)
     json (1.8.3)
-    less (2.6.0)
-      commonjs (~> 0.2.7)
     minitest (5.9.0)
     multi_json (1.12.1)
     pg (0.18.4)
@@ -65,7 +61,7 @@ DEPENDENCIES
   activerecord
   activesupport
   bcrypt
-  font-awesome-less
+  dotenv
   pg
   rake
   shotgun

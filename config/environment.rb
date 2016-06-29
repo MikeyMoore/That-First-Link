@@ -6,6 +6,9 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 # Require gems we care about
+
+require 'dotenv'
+
 require 'rubygems'
 
 require 'uri'
@@ -22,6 +25,10 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'json'
 
+
+Dotenv.load
+
+
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
 
@@ -34,6 +41,8 @@ configure do
   # See: http://www.sinatrarb.com/faq.html#sessions
   enable :sessions
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
+
+	set :secret_token, ENV['SECRET_TOKEN']
 
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
