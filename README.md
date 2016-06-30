@@ -21,3 +21,7 @@
 * User can filter between Posts depending on 'Addiction type'
 * User can upvote/downvote Posts and Comments
 * After a certain number of downvotes, Posts and Comments auto delete
+
+###sources
+
+<!-- *favicon image: http://www.istockphoto.com/vector/handshake-grip-gm480418001-36541820 -->
