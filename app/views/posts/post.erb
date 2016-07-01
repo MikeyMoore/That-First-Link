@@ -1,6 +1,19 @@
 <div class="single-post-page"
 <br>
 <h1 id="title"><%= @post.title %></h1>
+
+
+<span class='points'><%= @post.upvotes.count - @post.downvotes.count %></span>
+
+ <form action="/upvotes/<%= @post.id %>" method="POST">
+        <input type="submit" value="Like">
+  </form>
+
+   <form action="/downvotes/<%= @post.id %>" method="POST">
+        <input type="submit" value="Dislike">
+  </form>
+
+
 <br>
 <p><%= @post.content %></p>
 <br>
@@ -8,6 +21,7 @@
 <ul>
 <% @post.comments.each do |comment| %>
 <li><%= comment.content %></li>
+
 <% if session[:user_id] == comment.user_id %>
 		<form action="/comments/<%= comment.id %>" method="POST">
 		<input type="hidden" name="post_id" value="<%= @post.id %>">

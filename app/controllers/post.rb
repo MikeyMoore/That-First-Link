@@ -6,7 +6,7 @@ get '/posts' do
 end
 
 post '/posts' do
-	Post.create(user_id: current_user.id, title: params[:title], content: params[:content])
+	post = Post.create(user_id: current_user.id, title: params[:title], content: params[:content])
 	redirect '/posts'
 end
 
