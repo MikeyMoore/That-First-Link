@@ -5,14 +5,28 @@
 
 <span class='points'><%= @post.upvotes.count - @post.downvotes.count %></span>
 
+<% already_upvoted = 0 %>
+<% @post.upvotes.each do |upvote| %>
+<% already_upvoted = upvote.user_id %>
+<% end %>
+
+<% already_downvoted = 0 %>
+<% @post.downvotes.each do |downvote| %>
+<% already_downvoted = downvote.user_id %>
+<% end %>
+
+
+<% if session[:user_id] != already_upvoted %>
  <form action="/upvotes/<%= @post.id %>" method="POST">
         <input type="submit" value="Like">
   </form>
+<% end %>
 
+<% if session[:user_id] != already_downvoted %>
    <form action="/downvotes/<%= @post.id %>" method="POST">
         <input type="submit" value="Dislike">
   </form>
-
+<% end %>
 
 <br>
 <p><%= @post.content %></p>
