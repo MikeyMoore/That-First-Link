@@ -1,11 +1,12 @@
 get '/post' do
 	@posts = Post.all
 	@posts = @posts.reverse
+	@filter = params[:filter]
 	erb :'/posts/show'
 end
 
 post '/post' do
-	Post.create(user_id: session[:user_id], title: params[:title], content: params[:content])
+	Post.create(user_id: current_user.id, title: params[:title], content: params[:content])
 	redirect '/post'
 end
 
