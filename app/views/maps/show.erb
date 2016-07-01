@@ -15,6 +15,25 @@
   var service;
   var markers = [];
 
+
+
+  function initMap() {
+  var myLatLng = {lat: -25.363, lng: 131.044};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+
+
   function initialize() {
     var center = new google.maps.LatLng(37.7749, -122.4194);
 
@@ -34,7 +53,7 @@
 
      service.nearbySearch(request, callback);
 
-     google.maps.event.addListener(map, 'rightclick', function(event) {
+     google.maps.event.addListener(map, 'dblclick', function(event) {
      	map.setCenter(event.latLng)
      	clearResults(markers)
 
@@ -46,7 +65,21 @@
      	};
      	service.nearbySearch(request, callback);
      })
+
+  // 
+   google.maps.event.addListener(map, 'rightclick', function(event) {
+    map.setCenter(event.latLng)
+    
+    var newmarker = new google.maps.Marker({
+      map: map,
+      position: event.latLng,
+      title: "My meeting"
+       }); 
+      markers.push(newmarker)
+  })
+   //
   }
+
 
   function callback(results, status) {
   	if(status == google.maps.places.PlacesServiceStatus.OK){
