@@ -13,4 +13,23 @@
 <% @posts.each do |post| %>
 <br>
 <a href='post/<%= post.id %>'><%= post.title %></a>
+	<% if current_user.id == post.user_id %>
+		<form action="/post/<%= post.id %>" method="POST">
+      	<input type="hidden" name="_method" value="DELETE">
+      	<input type="submit" value="DELETE">
+      	</form>
+	<% end %>
 <% end %>
+
+<div>
+<h3>Filtered</h3>
+<% @posts.each do |post| %>
+<% postsfiltered = [] %>
+<% if post.title.downcase.include?('nicotine'.downcase) || post.content.include?('nicotine'.downcase) || post.content.include?('n'.upcase + 'icotine'.downcase) %>
+<% postsfiltered.push(post) %>
+<% end %>
+<% postsfiltered.each do |filteredpost| %>
+<a href='post/<%= filteredpost.id %>'><%= filteredpost.title %></a>
+<% end %>
+<% end %>
+</div>

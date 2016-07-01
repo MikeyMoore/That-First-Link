@@ -1,5 +1,6 @@
 get '/post' do
 	@posts = Post.all
+	@posts = @posts.reverse
 	erb :'/posts/show'
 end
 
@@ -16,4 +17,10 @@ end
 post '/post/:id' do
 	Comment.create(user_id: session[:user_id], post_id: params[:id], content: params[:content])
 	redirect "/post/#{params[:id]}"
+end
+
+delete '/post/:id' do
+  post = Post.find(params[:id])
+  post.destroy
+  redirect '/post'
 end

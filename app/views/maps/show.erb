@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html land='eng'>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=<%= SECRET_TOKEN %>">
+	</script>
+
+  <script>
+  var map;
+  var infowindow;
+
+  var request;
+  var service;
+  var markers = [];
+
+  function initialize() {
+    var center = new google.maps.LatLng(37.7749, -122.4194);
+
+    map = new google.maps.Map(document.getElementById('map'),{
+      center: center,
+      zoom: 13
+    });
+
+     request = {
+     	location: center,
+     	radius: 8047,
+     	types: ['hospital']
+     };
+     infowindow = new google.maps.InfoWindow();
+
+     service = new google.maps.places.PlacesService(map);
+
+     service.nearbySearch(request, callback);
+
+     google.maps.event.addListener(map, 'rightclick', function(event) {
+     	map.setCenter(event.latLng)
+     	clearResults(markers)
+
+     	request = {
+     		location: event.latLng,
+     		radius: 8047,
+     		types: ['hospital']
+
+     	};
+     	service.nearbySearch(request, callback);
+     })
+  }
+
+  function callback(results, status) {
+  	if(status == google.maps.places.PlacesServiceStatus.OK){
+  			for (var i = 0; i < results.length; i++){
+  				markers.push(createMarker(results[i]));
+  			}
+  		}
+  	}
+
+  	function createMarker(place){
+  		var placeLoc = place.geometry.location;
+  		var marker = new google.maps.Marker({
+  			map: map,
+  			position: place.geometry.location
+  		})
+
+  		google.maps.event.addListener(marker, 'click', function(){
+  			
+  			infowindow.setContent(place.name);
+  			infowindow.open(map, this);
+  		})
+  		return marker;
+  	}
+
+  	function clearResults(markers) {
+  		for (var m in markers) {
+  			markers[m].setMap(null)
+  		}
+  		markers = []
+  	}
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+	<style>
+	html, body, #map {
+		height:100%;
+		margin:0px;
+		padding:0px;
+	}
+	</style>
+</head>
+<body>
+	<div id="map">
+	</div>
+</body>
+<img src='/powered-by-google/desktop/powered_by_google_on_white.png'/> 
+</html>
+
+    <!-- <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 300px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      .pac-container {
+        font-family: Roboto;
+      }
+
+      #type-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #type-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+      #target {
+        width: 345px;
+      }
+    </style>
+
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div> -->
