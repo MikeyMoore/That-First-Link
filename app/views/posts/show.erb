@@ -1,15 +1,18 @@
 <% if current_user %>
-<form role="form" action="/posts" method="post">
+<div class='post'>
+<form class='posting' role="form" action="/posts" method="post">
 
     <input type="text" name="title" placeholder="Your Title">
     <br>
   	<textarea rows="5" name="content" placeholder="Your Post"></textarea>
   	<br>
-  
+  <div class="button">
   <button type="submit">Post</button>
+  </div>
 </form>
+</div>
 <% end %>
-
+<div class='filter'
 <form role="form" action="/posts" method="get">
 
     <input type="text" name="filter" placeholder="keyword">
@@ -17,6 +20,7 @@
   
   <button type="submit">Filter</button>
 </form>
+</div>
 
 <% if @filter %>
 <h3>Filtered</h3>
