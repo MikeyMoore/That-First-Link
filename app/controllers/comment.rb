@@ -1,5 +1,5 @@
-delete '/comment/:id' do
+delete '/comments/:id' do
   comment = Comment.find(params[:id])
   comment.destroy
-  redirect "/post/#{params[:post_id]}"
+  redirect "/posts/#{params[:post_id]}"
 end

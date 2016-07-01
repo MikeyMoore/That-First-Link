@@ -1,5 +1,5 @@
 <% if current_user %>
-<form role="form" action="/post" method="post">
+<form role="form" action="/posts" method="post">
 
     <input type="text" name="title" placeholder="Your Title">
     <br>
@@ -10,7 +10,7 @@
 </form>
 <% end %>
 
-<form role="form" action="/post" method="get">
+<form role="form" action="/posts" method="get">
 
     <input type="text" name="filter" placeholder="keyword">
     <br>
@@ -27,7 +27,7 @@
 <% postsfiltered.push(post) %>
 <% end %>
 <% postsfiltered.each do |filteredpost| %>
-<a href='post/<%= filteredpost.id %>'><%= filteredpost.title %></a>
+<a href='/posts/<%= filteredpost.id %>'><%= filteredpost.title %></a>
 <% end %>
 <% end %>
 </div>
@@ -37,9 +37,9 @@
 <h3>All Posts</h3>
 <% @posts.each do |post| %>
 <br>
-<a href='post/<%= post.id %>'><%= post.title %></a>
+<a href='/posts/<%= post.id %>'><%= post.title %></a>
 	<% if session[:user_id] == post.user_id %>
-		<form action="/post/<%= post.id %>" method="POST">
+		<form action="/posts/<%= post.id %>" method="POST">
       	<input type="hidden" name="_method" value="DELETE">
       	<input type="submit" value="DELETE">
       	</form>
