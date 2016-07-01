@@ -8,7 +8,7 @@
 * User can register
 * User can login, logout
 * User can use Google Maps api to find nearby AA meetings
-* User can view a page of Posts (two categories: Meetings Rater and Fellowship: You Are Not Alone)
+* User can view a page of Posts (two categories -> Meetings Rater and Fellowship: You Are Not Alone)
 * User can create Posts
 * User can comment on Posts
 * User can delete their own Posts and Comments
