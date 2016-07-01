@@ -1,5 +1,5 @@
 get '/users/new' do
-  erb :'/users/new', layout: false
+  erb :'/users/new'
 end
 
 post '/users' do
@@ -8,6 +8,6 @@ post '/users' do
     redirect '/'
   else
     @error = "Username already taken"
-    erb :"/users/new", layout: false
+    erb :"/users/new"
   end
 end
