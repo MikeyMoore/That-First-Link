@@ -69,14 +69,20 @@
   // 
    google.maps.event.addListener(map, 'rightclick', function(event) {
     map.setCenter(event.latLng)
+
+    // var newinfowindow = new google.maps.InfoWindow({content:"My meeting"})
     
     var newmarker = new google.maps.Marker({
       map: map,
       position: event.latLng,
-      title: "My meeting"
+      label: 'My meeting',
+      draggable: true,
+      title: 'My meeting'
        }); 
       markers.push(newmarker)
   })
+   // newmarker.addListener('click', function() {
+   //        newinfowindow.open(map, newmarker);
    //
   }
 
