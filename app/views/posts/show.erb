@@ -10,6 +10,31 @@
 </form>
 <% end %>
 
+<form role="form" action="/post" method="get">
+
+    <input type="text" name="filter" placeholder="keyword">
+    <br>
+  
+  <button type="submit">Filter</button>
+</form>
+
+<% if @filter %>
+<h3>Filtered</h3>
+<div>
+<% @posts.each do |post| %>
+<% postsfiltered = [] %>
+<% if post.title.downcase.include?(@filter.downcase) || post.content.include?(@filter.downcase) || post.content.include?(@filter[0].upcase + @filter[1..-1].downcase) %>
+<% postsfiltered.push(post) %>
+<% end %>
+<% postsfiltered.each do |filteredpost| %>
+<a href='post/<%= filteredpost.id %>'><%= filteredpost.title %></a>
+<% end %>
+<% end %>
+</div>
+<% end %>
+
+
+<h3>All Posts</h3>
 <% @posts.each do |post| %>
 <br>
 <a href='post/<%= post.id %>'><%= post.title %></a>
@@ -21,15 +46,4 @@
 	<% end %>
 <% end %>
 
-<div>
-<h3>Filtered</h3>
-<% @posts.each do |post| %>
-<% postsfiltered = [] %>
-<% if post.title.downcase.include?('nicotine'.downcase) || post.content.include?('nicotine'.downcase) || post.content.include?('n'.upcase + 'icotine'.downcase) %>
-<% postsfiltered.push(post) %>
-<% end %>
-<% postsfiltered.each do |filteredpost| %>
-<a href='post/<%= filteredpost.id %>'><%= filteredpost.title %></a>
-<% end %>
-<% end %>
-</div>
+

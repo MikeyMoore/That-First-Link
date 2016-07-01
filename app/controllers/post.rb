@@ -1,6 +1,7 @@
 get '/post' do
 	@posts = Post.all
 	@posts = @posts.reverse
+	@filter = params[:filter]
 	erb :'/posts/show'
 end
 
