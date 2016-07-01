@@ -12,7 +12,7 @@
 </form>
 </div>
 <% end %>
-<div class='filter'>
+<div class='filter'>      
 <form role="form" action="/posts" method="get">
 
     <input type="text" name="filter" placeholder="keyword">
@@ -32,7 +32,9 @@
 <% postsfiltered.push(post) %>
 <% end %>
 <% postsfiltered.each do |filteredpost| %>
+<div class='all-text'>
 <a href='/posts/<%= filteredpost.id %>'><%= filteredpost.title %></a>
+</div>
 <% end %>
 <% end %>
 </div>
@@ -42,13 +44,16 @@
 <h3>All Posts</h3>
 <% @posts.each do |post| %>
 <br>
-<a href='/posts/<%= post.id %>'><%= post.title %></a>
+<div class='all-text'>
+<a href='/posts/<%= post.id %>'><%= post.title %>
+</a>
 	<% if session[:user_id] == post.user_id %>
 		<form action="/posts/<%= post.id %>" method="POST">
       	<input type="hidden" name="_method" value="DELETE">
       	<input type="submit" value="DELETE">
       	</form>
 	<% end %>
+</div>
 <% end %>
 </div>
 

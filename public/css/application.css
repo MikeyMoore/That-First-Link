@@ -2,10 +2,17 @@ body {
 	background-image: url("waterfall.jpg");
 }
 
+.all-text {
+	width:150px;
+	margin-left:auto;
+	margin-right:auto;
+	padding:20px;
+}
+
 .show-all-posts {
 	color:white;
 	font-size:30px;
-	width:150px;
+	width:300px;
 	margin-left:auto;
 	margin-right:auto;
 	background-color:gray;
