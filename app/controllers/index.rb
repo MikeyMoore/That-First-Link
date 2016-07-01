@@ -5,16 +5,18 @@ end
 post '/login' do
   if !User.all.empty? 
   @user = User.find_by(username: params[:user][:username])
-  	if @user.authenticate(params[:user][:password])
-   	 	session[:user_id] = @user.id
-    	redirect '/'
-  	else
-    	@error = "Sorry, we don't recognize your username or password"
-    	erb :index
-  	end
-  else 
-  	@error = "Start by registering!"
-  	erb :index
+    if @user != nil
+  	  if @user.authenticate(params[:user][:password])
+   	    session[:user_id] = @user.id
+    	  redirect '/'
+  	  else
+        @error = "Sorry, we don't recognize your username or password"
+    	  erb :index
+  	  end
+    else 
+  	   @error = "Start by registering!"
+  	   erb :index
+    end
   end
 end
 
