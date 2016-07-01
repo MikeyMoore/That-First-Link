@@ -16,5 +16,3 @@ gem 'rake'
 gem 'bcrypt'
 
 gem 'shotgun'
-
-gem 'heroku'
