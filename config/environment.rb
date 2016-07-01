@@ -25,7 +25,6 @@ require "sinatra/reloader" if development?
 require 'erb'
 require 'json'
 
-
 Dotenv.load
 
 SECRET_TOKEN = ENV['SECRET_TOKEN']
