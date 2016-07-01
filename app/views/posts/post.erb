@@ -8,7 +8,7 @@
 <% @post.comments.each do |comment| %>
 <li><%= comment.content %></li>
 <% if session[:user_id] == comment.user_id %>
-		<form action="/comment/<%= comment.id %>" method="POST">
+		<form action="/comments/<%= comment.id %>" method="POST">
 		<input type="hidden" name="post_id" value="<%= @post.id %>">
       	<input type="hidden" name="_method" value="DELETE">
       	<input type="submit" value="DELETE">
@@ -18,7 +18,7 @@
 <% end %>
 </ul>
 <% if current_user %>
-<form role="form" action="/post/<%= @post.id %>" method="post">
+<form role="form" action="/posts/<%= @post.id %>" method="post">
 
     <textarea rows="5" name="content" placeholder="Leave your response"></textarea>
         <br>

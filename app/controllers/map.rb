@@ -1,3 +1,3 @@
-get '/map' do
+get '/maps' do
 	erb :'/maps/show'
 end

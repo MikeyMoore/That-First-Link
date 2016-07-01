@@ -1,4 +1,4 @@
-get '/user/new' do
+get '/users/new' do
   erb :'/users/new', layout: false
 end
 

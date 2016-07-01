@@ -1,27 +1,27 @@
-get '/post' do
+get '/posts' do
 	@posts = Post.all
 	@posts = @posts.reverse
 	@filter = params[:filter]
 	erb :'/posts/show'
 end
 
-post '/post' do
+post '/posts' do
 	Post.create(user_id: current_user.id, title: params[:title], content: params[:content])
-	redirect '/post'
+	redirect '/posts'
 end
 
-get '/post/:id' do
+get '/posts/:id' do
 	@post = Post.find(params[:id])
 	erb :'posts/post'
 end
 
-post '/post/:id' do
+post '/posts/:id' do
 	Comment.create(user_id: session[:user_id], post_id: params[:id], content: params[:content])
-	redirect "/post/#{params[:id]}"
+	redirect "/posts/#{params[:id]}"
 end
 
-delete '/post/:id' do
+delete '/posts/:id' do
   post = Post.find(params[:id])
   post.destroy
-  redirect '/post'
+  redirect '/posts'
 end
