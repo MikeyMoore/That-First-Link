@@ -15,11 +15,11 @@ a {
 }
 
 .show-all-posts {
+	text-align: center;
 	color:white;
 	font-size:30px;
 	width:300px;
 	margin-left:auto;
-	margin-right:auto;
 	background-color:gray;
 	border:2px blue solid;
 }
@@ -41,7 +41,7 @@ a {
 
 .home {
 	margin:10px;
-	margin-top:50px;
+	margin-top:230px;
 	margin-left:auto;
 	margin-right:auto;
 	width:500px;
@@ -58,17 +58,24 @@ nav {
 	margin:2px;
 }
 
+.toolbar {
+	display:inline-block;
+	position:fixed;
+	margin-bottom:60px;
+}
+
 .filter {
 	margin:10px;
-	border:4px orange dotted;
 	width:150px;
 	margin-left:auto;
 	margin-right:auto;
 }
 
 .post {
+	margin-top:180px;
+	display:block;
 	width:250px;
-	margin-left:auto;
+	position: fixed;
 	margin-right:auto;
 	border:2px blue solid;
 }
@@ -85,4 +92,15 @@ button {
 	width:140px;
 	margin-left:auto;
 	margin-right:auto;
+}
+
+html, body, #map {
+	height:90%;
+	width:90%;
+}
+
+#map {
+	height:90%;
+	width:90%;
+	margin-top:180px;
 }

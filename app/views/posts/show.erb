@@ -12,17 +12,18 @@
 </form>
 </div>
 <% end %>
-<div class='filter'>      
-<form role="form" action="/posts" method="get">
-
-    <input type="text" name="filter" placeholder="keyword">
-    <br>
-  
-  <button type="submit">Filter</button>
-</form>
-</div>
 
 <div class="show-all-posts">
+
+  <div class='filter'>      
+    <form role="form" action="/posts" method="get">
+
+      <input type="text" name="filter" placeholder="You are not alone">
+      
+      <button type="submit">Filter</button>
+    </form>
+  </div>
+
 <% if @filter %>
 <h3>Filtered</h3>
 <div>
