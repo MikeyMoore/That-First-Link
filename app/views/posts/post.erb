@@ -3,7 +3,7 @@
 <h1 id="title"><%= @post.title %></h1>
 
 
-<span class='points'><%= @post.upvotes.count - @post.downvotes.count %></span>
+<span class='points'><%= @post.upvotes.count - @post.downvotes.count %> likes</span>
 
 <% already_upvoted = 0 %>
 <% @post.upvotes.each do |upvote| %>
@@ -16,13 +16,13 @@
 <% end %>
 
 
-<% if session[:user_id] != already_upvoted %>
+<% if session[:user_id] != already_upvoted && current_user%>
  <form action="/upvotes/<%= @post.id %>" method="POST">
         <input type="submit" value="Like">
   </form>
 <% end %>
 
-<% if session[:user_id] != already_downvoted %>
+<% if session[:user_id] != already_downvoted && current_user %>
    <form action="/downvotes/<%= @post.id %>" method="POST">
         <input type="submit" value="Dislike">
   </form>
@@ -32,9 +32,13 @@
 <p><%= @post.content %></p>
 <br>
 <h2>Responses</h2>
+<% if @post.comments.count == 0 %>
+  <p> No responses yet </p>
+<% end %>
 <ul>
 <% @post.comments.each do |comment| %>
-<li><%= comment.content %></li>
+  <li><%= comment.content %></li>
+
 
 <% if session[:user_id] == comment.user_id %>
 		<form action="/comments/<%= comment.id %>" method="POST">

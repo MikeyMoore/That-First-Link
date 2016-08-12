@@ -1,5 +1,6 @@
 body {
-	background-image: url("waterfall.jpg");
+	/*background-image: url("waterfall.jpg");*/
+	background-color:#2D4471;
 }
 
 .all-text {
@@ -19,14 +20,14 @@ a {
 	color:white;
 	font-size:30px;
 	width:300px;
-	margin-left:auto;
-	background-color:gray;
-	border:2px blue solid;
+	margin-left:60%;
+	background-color:#4B5872;
+	border:2px #696C72 solid;
 }
 
 .single-post-page {
-	margin-top:180px;
-	background-color:gray;
+	margin-top:200px;
+	background-color:#4B5872;
 }
 
 #title {
@@ -36,8 +37,9 @@ a {
 .links {
 	display: block;
 	margin-left:30%;
-	background-color:gray;
+	background-color:#4B5872;
 	width:205px;
+	text-align: center;
 }
 
 .home {
@@ -53,10 +55,11 @@ a {
 nav {
 	background-color:orange;
 	float:right;
-	border:2px blue solid;
+	border:2px #696C72 solid;
 	font-family:fantasy;
 	font-size:15px;
 	margin:2px;
+	max-width:180px;
 }
 
 .toolbar {
@@ -73,12 +76,12 @@ nav {
 }
 
 .post {
-	margin-top:180px;
+	margin-top:200px;
 	display:block;
 	width:250px;
 	position: fixed;
 	margin-right:auto;
-	border:2px blue solid;
+	border:2px #696C72 solid;
 }
 
 .posting {
@@ -86,7 +89,7 @@ nav {
 }
 
 body {
-	padding:50px;
+	padding:30px;
 }
 
 button {
@@ -103,5 +106,5 @@ html, body, #map {
 #map {
 	height:90%;
 	width:90%;
-	margin-top:180px;
+	margin-top:200px;
 }
