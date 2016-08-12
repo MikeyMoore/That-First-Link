@@ -25,6 +25,7 @@
   </div>
 
 <% if @filter %>
+<% noPostCatchStatement = "No post with desired content yet" %>
 <h3>Filtered</h3>
 <div>
 <% @posts.each do |post| %>
@@ -32,12 +33,16 @@
 <% if post.title.downcase.include?(@filter.downcase) || post.content.include?(@filter.downcase) || post.content.include?(@filter[0].upcase + @filter[1..-1].downcase) %>
 <% postsfiltered.push(post) %>
 <% end %>
+<% if postsfiltered.count != 0 %>
+<% noPostCatchStatement = "" %>
+<% end %>
 <% postsfiltered.each do |filteredpost| %>
 <div class='all-text'>
 <a href='/posts/<%= filteredpost.id %>'><%= filteredpost.title %></a>
 </div>
 <% end %>
 <% end %>
+<%= noPostCatchStatement %>
 </div>
 <% end %>
 
