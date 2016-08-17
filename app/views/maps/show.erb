@@ -64,48 +64,60 @@
       markers.push(newmarker)
       userMarkers.push(newmarker)
       console.log(userMarkers[0].getPosition().lat())
-  })
+      
+// Throws personal marker outside script
+    if(userMarkers.length > 0){
+      document.getElementById('personalMarker').innerHTML="Lat:" + userMarkers[0].getPosition().lat() + " Lon:" + userMarkers[0].getPosition().lng();
+      };
+    })
 
   }
 
 // finds nearby AA meetings around center of map
   function callback(results, status) {
-  	if(status == google.maps.places.PlacesServiceStatus.OK){
-  			for (var i = 0; i < results.length; i++){
-  				markers.push(createMarker(results[i]));
-  			}
-  		}
-  	}
+    if(status == google.maps.places.PlacesServiceStatus.OK){
+        for (var i = 0; i < results.length; i++){
+          markers.push(createMarker(results[i]));
+        }
+      }
+    }
 
 // Adds found nearby AA meeting markers to auto-generated markers ('markers') around center of map
-  	function createMarker(place){
-  		var placeLoc = place.geometry.location;
-  		var marker = new google.maps.Marker({
-  			map: map,
-  			position: place.geometry.location
-  		})
+    function createMarker(place){
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: place.geometry.location
+      })
 
-  		google.maps.event.addListener(marker, 'click', function(){
-  			
-  			infowindow.setContent(place.name);
-  			infowindow.open(map, this);
-  		})
-  		return marker;
-  	}
+      google.maps.event.addListener(marker, 'click', function(){
+        
+        infowindow.setContent(place.name);
+        infowindow.open(map, this);
+      })
+      return marker;
+    }
 
 // Clears stale nearby AA meeting markers when user changes center of map
-  	function clearResults(markers) {
-  		for (var m in markers) {
-  			markers[m].setMap(null)
-  		}
-  		markers = []
-  	}
+    function clearResults(markers) {
+      for (var m in markers) {
+        markers[m].setMap(null)
+      }
+      markers = []
+    }
+
 
 // Loads map
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
-
+  <div id="personalMarker">
+    <h2>hello</h2>
+  </div>
 	<div id="map">
 	</div>
+
+<!--   <form action="#" method="post">
+    <input type="text" name="lat" placeholder=""> -->
+
 
 <img src='/powered-by-google/desktop/powered_by_google_on_white.png'/> 
