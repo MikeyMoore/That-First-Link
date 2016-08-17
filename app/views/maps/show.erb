@@ -63,14 +63,16 @@
        }); 
       markers.push(newmarker)
       userMarkers.push(newmarker)
-      console.log(userMarkers[0].getPosition().lat())
 
 // This is so the script can grab the user's personal markers from DOM
-  var test = document.getElementById('personalMarker').textContent;
-  console.log(test)
 // Throws personal marker outside script
     if(userMarkers.length > 0){
-      document.getElementById('personalMarker').innerHTML="Lat:" + userMarkers[0].getPosition().lat() + " Lon:" + userMarkers[0].getPosition().lng();
+      document.getElementById('personalMarkerLat').innerHTML=userMarkers[0].getPosition().lat();
+      document.getElementById('personalMarkerLng').innerHTML=userMarkers[0].getPosition().lng();
+      var lat = document.getElementById('personalMarkerLat').textContent;
+      var lng = document.getElementById('personalMarkerLng').textContent;
+      console.log(lat)
+      console.log(lng)
       };
     })
 
@@ -113,11 +115,15 @@
 // Loads map
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
-<% a = 
-  "<div id='personalMarker'>
-    <h2>hello</h2>" %>
-<%= a %>
-  </div>
+<% lat = 
+  "<div id='personalMarkerLat'>
+    <h2>hello</h2> </div>" %>
+<%= lat %>
+<% lng = 
+  "<div id='personalMarkerLng'>
+    <h2>hello</h2> </div>" %>
+<%= lng %>
+
 	<div id="map">
 	</div>
 
