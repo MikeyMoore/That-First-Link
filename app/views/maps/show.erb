@@ -11,27 +11,12 @@
   var request;
   var service;
   var markers = [];
+  var userMarkers = [];
 
-
-
-  function initMap() {
-  var myLatLng = {lat: -25.363, lng: 131.044};
-
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: myLatLng
-  });
-
-  // var marker = new google.maps.Marker({
-  //   position: myLatLng,
-  //   map: map,
-  //   title: 'Hello World!'
-  // });
-}
-
-
-
+// Generates map
   function initialize() {
+
+// Initializes map in San Francisco 
     var center = new google.maps.LatLng(37.7749, -122.4194);
 
     map = new google.maps.Map(document.getElementById('map'),{
@@ -39,10 +24,11 @@
       zoom: 13
     });
 
+// Populates generated map with initial markers ('markers') of nearby AA meetings
      request = {
-     	location: center,
-     	radius: 8047,
-     	keyword: ['AA meeting']
+      location: center,
+      radius: 8047,
+      keyword: ['AA meeting']
      };
      infowindow = new google.maps.InfoWindow();
 
@@ -50,7 +36,9 @@
 
      service.nearbySearch(request, callback);
 
+// Changes nearby results to adjusted center of map with double click
      google.maps.event.addListener(map, 'dblclick', function(event) {
+      map.setOptions({disableDoubleClickZoom:true})
      	map.setCenter(event.latLng)
      	clearResults(markers)
 
@@ -63,8 +51,8 @@
      	service.nearbySearch(request, callback);
      })
 
+// Adds personal marker on right click
    google.maps.event.addListener(map, 'rightclick', function(event) {
-    // map.setCenter(event.latLng)
     
     var newmarker = new google.maps.Marker({
       map: map,
@@ -74,11 +62,13 @@
       title: 'My meeting'
        }); 
       markers.push(newmarker)
+      userMarkers.push(newmarker)
+      console.log(userMarkers[0].getPosition().lat())
   })
 
   }
 
-
+// finds nearby AA meetings around center of map
   function callback(results, status) {
   	if(status == google.maps.places.PlacesServiceStatus.OK){
   			for (var i = 0; i < results.length; i++){
@@ -87,6 +77,7 @@
   		}
   	}
 
+// Adds found nearby AA meeting markers to auto-generated markers ('markers') around center of map
   	function createMarker(place){
   		var placeLoc = place.geometry.location;
   		var marker = new google.maps.Marker({
@@ -102,6 +93,7 @@
   		return marker;
   	}
 
+// Clears stale nearby AA meeting markers when user changes center of map
   	function clearResults(markers) {
   		for (var m in markers) {
   			markers[m].setMap(null)
@@ -109,6 +101,7 @@
   		markers = []
   	}
 
+// Loads map
   google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 
