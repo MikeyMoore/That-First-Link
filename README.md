@@ -1,6 +1,7 @@
 # That First Link
 
 * A place where you can anonymously seek help and advice from fellow addicts.  This is your virtual meeting.
+* Heroku link: https://thatfirstlink.herokuapp.com/
 
 ##MVP
 
